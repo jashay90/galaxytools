@@ -1,0 +1,8 @@
+name: filterinfo
+owner: jashay90
+description: Report proportion of reads in one file vs. the other
+long_description: Takes two fastq files, counts the number of lines/sequences per file, and reports the fraction of reads in one file vs. the other. Can also double the read count for both files with the paired option.
+remote_repository_url: github.com/jashay90/galaxytools
+type: unrestricted
+categories:
+  - Fastq Manipulation

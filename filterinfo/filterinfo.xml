@@ -1,0 +1,83 @@
+<tool id="filterinfo" name="Report proportion of reads in one file vs. the other" version="0.1.0">
+    <requirements>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+	'$__tool_directory__/filterinfo.sh' -1 
+#if str( $orig_cond.orig_type ) == "one_of_pair"
+	'$orig_cond.orig'
+#else
+	'$orig_cond.orig.forward'
+#end if
+	-2
+#if str( $filtered_cond.filtered_type ) == "one_of_pair"
+	'$filtered_cond.filt'
+#else
+	'$filtered_cond.filt.forward'
+#end if
+#if $ispaired
+	'-p'
+#end if
+	-o '$out'
+    ]]></command>
+    <inputs>
+	    <conditional name="orig_cond">
+		<param name="orig_type" type="select" label="Original Input Type">
+		    <option value="one_of_pair">Fastq File</option>
+                    <option value="paired_collection">Paired Collection</option>
+		</param>
+		<when value="one_of_pair">
+                    <param name="orig" type="data" format="fastqsanger" label="Fastq sequences before filtering" help="Specify a single fastq file (either unpaired or half of a pair)"/>
+		</when>
+		<when value="paired_collection">
+		    <param name="orig" format="fastqsanger" type="data_collection" collection_type="paired" label="Fastq sequences before filtering" help="Specify paired dataset collection containing paired reads"/>
+		</when>
+            </conditional>
+	    <conditional name="filtered_cond">
+		<param name="filtered_type" type="select" label="Filtered Input Type">
+		    <option value="one_of_pair">Fastq File</option>
+                    <option value="paired_collection">Paired Collection</option>
+		</param>
+		<when value="one_of_pair">
+                    <param name="filt" type="data" format="fastqsanger" label="Fastq sequences before filtering" help="Specify a single fastq file (either unpaired or half of a pair)"/>
+		</when>
+		<when value="paired_collection">
+		    <param name="filt" format="fastqsanger" type="data_collection" collection_type="paired" label="Fastq sequences before filtering" help="Specify paired dataset collection containing paired reads"/>
+		</when>
+            </conditional>
+            <param name="ispaired" type="boolean" label="Do the input fastq files come from sets of paired reads?"/>
+    </inputs>
+    <outputs>
+	    <data name="out" format="tabular" />
+    </outputs>
+    <tests>
+	    <test>
+		    <param name="orig_type" value="paired_collection"/>
+		    <param name="orig">
+			<collection type="paired">
+			    <element name="forward" value="full.fq" />
+			    <element name="reverse" value="full2.fq" />
+			</collection>
+		    </param>
+		    <param name="filtered_type" value="one_of_pair"/>
+		    <param name="filt" value="filtered.fq"/>
+                    <param name="ispaired" value="true"/>
+		    <output name="out" file="prop.tsv"/>
+	    </test>
+    </tests>
+    <help><![CDATA[
+	Usage: ./filterinfo.sh -1 full.fq -2 filtered.fq -o out.tsv
+
+]]></help>
+    <citations>
+	     <citation type="bibtex">
+@misc{githubfilterinfo,
+  author = {LastTODO, FirstTODO},
+  year = {TODO},
+  title = {filterinfo},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/jashay90/galaxytools},
+}</citation>
+    </citations>
+</tool>
+

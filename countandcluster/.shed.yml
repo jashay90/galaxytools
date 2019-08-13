@@ -1,0 +1,9 @@
+name: hitsandclusters
+owner: jashay90
+description: Count hits per gene and cluster
+long_description: Takes a bam alignment file and a tab-delimited file defining the cluster identity of each reference sequence as input. Produces two output files -- a file with counts and proportion covered for each reference sequence, and a file with the maximum count and proportion covered within each cluster.
+remote_repository_url: github.com/jashay90/galaxytools
+type: unrestricted
+categories:
+  - Metagenomics
+  - Sequence Analysis

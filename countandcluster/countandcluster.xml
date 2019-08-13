@@ -1,0 +1,54 @@
+<tool id="hitsandclusters" name="Count hits per gene and cluster" version="0.1.0">
+	<requirements>
+	<requirement type="package" version="3.6.7">python</requirement>	
+	<requirement type="package" version="0.15.2">pysam</requirement>
+	<requirement type="package" version="0.24.1">pandas</requirement>
+	<requirement type="package" version="1.15.4">numpy</requirement>	
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+	    python '$__tool_directory__/countandcluster.py' -c '$clusters' -b '$bam' -p '$prop' -g '$out1' -i '${bam.metadata.bam_index}' -o '$out2'
+    ]]></command>
+    <inputs>
+	    <param type="data" name="clusters" format="tabular" />
+	    <param type="data" name="bam" format="bam" />
+	    <param type="float" name="prop" value="0.9" />
+    </inputs>
+    <outputs>
+	    <data name="out1" format="tabular" />
+	    <data name="out2" format="tabular" />
+    </outputs>
+    <tests>
+	    <test>
+		    <param name="clusters" value="megares_subset.tsv"/>
+		    <param name="bam" value="test.bam"/>
+		    <param name="prop" value="0.5"/>
+		    <output name="out1" file="geneout.tsv"/>
+		    <output name="out2" file="clusterout.tsv"/>
+	    </test>
+    </tests>
+    <help><![CDATA[
+        usage: countandcluster.py [-h] [-b BAM] [-i INDEX] -c CLUSTERS [-p MINPROP] [-g GENEOUT] [-o CLUSTEROUT]
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -b BAM          bam alignment file
+  -i INDEX	bam index
+  -c CLUSTERS     Tab-delimited file with genes and clusters
+  -p MINPROP      minimum proportion of cluster covered
+  -g GENEOUT     output file for gene counts
+  -o CLUSTEROUT  output file for cluster counts
+
+  ]]></help>
+    <citations>
+	     <citation type="bibtex">
+@misc{githubhitsandclusters,
+  author = {LastTODO, FirstTODO},
+  year = {TODO},
+  title = {hitsandclusters},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/jashay90/galaxytools},
+}</citation>
+    </citations>
+</tool>
+
