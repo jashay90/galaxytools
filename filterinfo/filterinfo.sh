@@ -37,13 +37,13 @@ else
 		divideby=4
 	fi
 	# print % reads passing filter to an outfile
-	if [[ $FILTERED == *.gz ]]; then
+	if [ $(file $FILTERED | awk '{print $2}') == "gzip" ]; then
 		pass=$(gunzip -c $FILTERED | wc -l | awk '{print $1}')
 	else
 		pass=$(wc -l $FILTERED | awk '{print $1}')
 	fi
 	pass=$(expr $pass / $divideby)
-	if [[ $FULL == *.gz ]]; then
+	if [ $(file $FULL | awk '{print $2}') == "gzip" ]; then
 		total=$(gunzip -c $FULL | wc -l | awk '{print $1}')
 	else
 		total=$(wc -l $FULL | awk '{print $1}')
