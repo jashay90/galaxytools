@@ -1,4 +1,5 @@
-<tool id="filterinfo" name="Report proportion of reads in one file vs. the other" version="0.1.0">
+<tool id="filterinfo" name="Filter Info" version="0.1.1">
+    <description>Report proportion of reads in one file vs. the other</description>
     <requirements>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
@@ -38,7 +39,7 @@
                     <option value="paired_collection">Paired Collection</option>
 		</param>
 		<when value="one_of_pair">
-                    <param name="filt" type="data" format="fastqsanger" label="Fastq sequences before filtering" help="Specify a single fastq file (either unpaired or half of a pair)"/>
+                    <param name="filt" type="data" format="fastqsanger" label="Fastq sequences after filtering" help="Specify a single fastq file (either unpaired or half of a pair)"/>
 		</when>
 		<when value="paired_collection">
 		    <param name="filt" format="fastqsanger" type="data_collection" collection_type="paired" label="Fastq sequences before filtering" help="Specify paired dataset collection containing paired reads"/>
@@ -71,8 +72,8 @@
     <citations>
 	     <citation type="bibtex">
 @misc{githubfilterinfo,
-  author = {LastTODO, FirstTODO},
-  year = {TODO},
+  author = {Shay, Julie},
+  year = {2019,
   title = {filterinfo},
   publisher = {GitHub},
   journal = {GitHub repository},

@@ -1,4 +1,5 @@
-<tool id="hitsandclusters" name="Count hits per gene and cluster" version="0.1.0">
+<tool id="hitsandclusters" name="Count hits per gene and cluster" version="0.1.1">
+	<description> given a bam file and list with clusters.</description>
 	<requirements>
 	<requirement type="package" version="3.6.7">python</requirement>	
 	<requirement type="package" version="0.15.2">pysam</requirement>
@@ -42,8 +43,8 @@ optional arguments:
     <citations>
 	     <citation type="bibtex">
 @misc{githubhitsandclusters,
-  author = {LastTODO, FirstTODO},
-  year = {TODO},
+  author = {Shay, Julie},
+  year = {2019},
   title = {hitsandclusters},
   publisher = {GitHub},
   journal = {GitHub repository},
